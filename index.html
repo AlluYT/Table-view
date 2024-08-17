@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Roboto_font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Include Swiper CSS -->
+
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.0/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="profileSlider.css"> -->
+    <link rel="stylesheet" href="details.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #dcdcdc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f3f3f3;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #ffffff;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 6px;
+            border: 1px solid #dcdcdc;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <table>
+        <tr onclick="toggleSubRow(1)">
+            <th><i class="bi bi-arrow-right-circle-fill"></i></th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+            <th>Column 4</th>
+        </tr>
+        <tr class="main-row hidden" data-parent="1" onclick="toggleSubRow(2)">
+            <td><input type="text" value=">"></td>
+            <td><input type="text" value="Sub Column 1"></td>
+            <td><input type="text" value="Sub Column 1"></td>
+            <td><input type="text" value="Sub Column 1"></td>
+        </tr>
+        <tr class="sub-row hidden" data-parent="2" onclick="toggleSubRow(3)">
+            <td><input type="text" value=">"></td>
+            <td><input type="text" value="Sub Column 1 Sub Column"></td>
+            <td><input type="text" value="Sub Column 1 Sub Column"></td>
+            <td><input type="text" value="Sub Column 1 Sub Column"></td>
+        </tr>
+        <tr class="sub-sub-row hidden" data-parent="3">
+            <td><input type="text" value=">"></td>
+            <td><input type="text" value="Sub Column 1 Sub Column Details"></td>
+            <td><input type="text" value="Sub Column 1 Sub Column Details"></td>
+            <td><input type="text" value="Sub Column 1 Sub Column Details"></td>
+        </tr>
+    </table>
+
+    <script>
+        function toggleSubRow(rowId) {
+            // Find the sub-row or sub-sub-row that belongs to the clicked row
+            const subRows = document.querySelectorAll(`tr[data-parent="${rowId}"]`);
+
+            // Toggle visibility of the corresponding sub-rows
+            subRows.forEach(row => {
+                if (row.classList.contains('hidden')) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                    // Hide all child rows of this row
+                    hideChildRows(row.dataset.parent);
+                }
+            });
+        }
+
+        function hideChildRows(parentId) {
+            const childRows = document.querySelectorAll(`tr[data-parent="${parentId}"]`);
+            childRows.forEach(childRow => {
+                childRow.classList.add('hidden');
+                // Recursively hide any nested child rows
+                hideChildRows(childRow.dataset.parent);
+            });
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Footer -->
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</body>
+
+</html>
